@@ -93,7 +93,7 @@ class StrategyLearner(object):
         state_size        = 6
         action_size       = 5
         
-        max_iter          = 5
+        max_iter          = 10
         actions_df        = pd.DataFrame(index=states.index,data=[0]*len(states))
         iter_num          = 0
         converged         = False
@@ -230,7 +230,7 @@ class StrategyLearner(object):
 
 if __name__=="__main__":
        
-    nuevo = StrategyLearner(commission=0)
+    nuevo = StrategyLearner(commission=9.95)
     nuevo.addEvidence(symbol="JPM")
     nuevo.testPolicy(symbol="JPM",sv=1000000)
     print ("One does not simply think up a strategy")
