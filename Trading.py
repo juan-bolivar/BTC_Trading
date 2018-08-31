@@ -60,9 +60,9 @@ class StrategyLearner(object):
         sv = 1000000): 
         # add your code to do learning here
         
-        btc = pd.read_csv("coinbaseUSD_1-min_data_2014-12-01_to_2018-06-27.csv")
+        btc = pd.read_csv("COINBASE_FILTERED.csv")
         
-        size= int(len(btc)*0.001)
+        size= int(len(btc)*0.005)
         
         btc = btc.iloc[-3*size:-size]
         
@@ -165,9 +165,9 @@ class StrategyLearner(object):
         ed=dt.datetime(2010,1,1), \
         sv = 10000):
         
-        btc = pd.read_csv("coinbaseUSD_1-min_data_2014-12-01_to_2018-06-27.csv")
+        btc = pd.read_csv("COINBASE_FILTERED.csv")
         
-        size= int(len(btc)*0.001)
+        size= int(len(btc)*0.005)
         btc = btc.iloc[-size:]
         
         btc[btc.columns.values] = btc[btc.columns.values].ffill()
