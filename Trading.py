@@ -155,7 +155,7 @@ class StrategyLearner(object):
         trades['Order']  = trades['Shares'].to_frame().applymap(lambda x : {-2:'SELL',-1.5:'SELL',-1:'SELL',-0.5:'SELL',0:0,0.5:"BUY",1:"BUY",1.5:"BUY",2:"BUY"}[x])
         trades['Shares'] = trades['Shares'].abs()
         trades['Date']   = trades.index
-        pdb.set_trace()
+        compute_portvals(trades)
         self.agent = agent
         
         

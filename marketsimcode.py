@@ -137,8 +137,14 @@ def author():
 
 
 def get_data(archive='COINBASE_FILTERED.csv',start_date=dt.datetime(2009,1,1) , end_date=dt.datetime(2010,1,1)):
-    pdb.set_trace()
-
+    
+    datos = pd.read_csv(archive,sep=',')
+    datos.index = pd.to_datetime(datos['Timestamp'],infer_datetime_format =True,unit='s')
+    salida= datos.loc[start_date:end_date]
+    return salida['Weighted_Price']
+    
+    
+    
     
 
 def compute_portvals(orders_df , start_val = 1000000, commission=9.95, impact=0.005):
@@ -162,9 +168,10 @@ def compute_portvals(orders_df , start_val = 1000000, commission=9.95, impact=0.
     start_date = df_trades.ix[0,'Date']
     end_date   = df_trades['Date'].iloc[-1]
 
+    pdb.set_trace()
     
-    df_prices = get_data(symbols, pd.date_range(start_date, end_date))
-    df_prices = df_prices[symbols]
+    df_prices = get_data('COINBASE_FILTERED.csv',start_date=start_date,end_date=end_date)
+    #df_prices = df_prices[symbols]
     
     temp = pd.DataFrame(index=df_prices.index)
     
@@ -205,7 +212,7 @@ def compute_portvals(orders_df , start_val = 1000000, commission=9.95, impact=0.
    
     df_portval = pd.DataFrame(data=df_portval.TotalValue.values,index=df_portval.Dates.values,columns=['TotalValue'])
     
-    pdb.set_trace()
+    
     #pd.concat([df_value['Value'],df_holdings['Cash'],df_portval,orders_df['Order']],axis=1)
     return df_portval
 
