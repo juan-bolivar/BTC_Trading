@@ -128,15 +128,21 @@ import pandas as pd
 import numpy as np
 import datetime as dt
 import os
-from util import get_data, plot_data
+#from util import get_data, plot_data
 from analysis import *
 import pdb
 
 def author():
     return 'juan'
 
+
+def get_data(archive='COINBASE_FILTERED.csv',start_date=dt.datetime(2009,1,1) , end_date=dt.datetime(2010,1,1)):
+    pdb.set_trace()
+
+    
+
 def compute_portvals(orders_df , start_val = 1000000, commission=9.95, impact=0.005):
-    #pdb.set_trace()
+    
     df_trades2 = orders_df.copy()
     df_trades2.sort_values('Date',inplace=True)
     df_trades2.loc[df_trades2['Order']=='BUY','Order']  = 1
@@ -161,6 +167,7 @@ def compute_portvals(orders_df , start_val = 1000000, commission=9.95, impact=0.
     df_prices = df_prices[symbols]
     
     temp = pd.DataFrame(index=df_prices.index)
+    
     df_trades = temp.join(df_trades.set_index('Date'),sort='True').rename_axis(None,axis=0).fillna(0)
     
     df_holdings = df_trades.copy()
