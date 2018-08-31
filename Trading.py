@@ -156,6 +156,7 @@ class StrategyLearner(object):
         trades['Shares'] = trades['Shares'].abs()
         trades['Date']   = trades.index
         compute_portvals(trades)
+        pdb.set_trace()
         self.agent = agent
         
         
