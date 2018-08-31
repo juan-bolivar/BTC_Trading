@@ -4,6 +4,7 @@ Template for implementing StrategyLearner  (c) 2016 Tucker Balch
 
 import datetime as dt
 import pandas as pd
+import util as ut
 import random
 import matplotlib.pyplot as plt
 import numpy as np
