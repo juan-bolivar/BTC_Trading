@@ -18,6 +18,8 @@ from indicators_fun import indicators
 from sklearn.model_selection import train_test_split
 from indicators_bitcoin import indicators
 
+from os import listdir
+import os
 
 class StrategyLearner(object):   
     def __init__(self, verbose=False, impact=0.005 , commission=9.95):
@@ -30,7 +32,6 @@ class StrategyLearner(object):
 
         prices_all = self.prices_all
         
-
         holdings_actions              = {0:1,1:0.5,2:0,3:-0.5,4:-1}[action]
         
                 
@@ -57,10 +58,9 @@ class StrategyLearner(object):
         sd=dt.datetime(2015,1,1), \
         ed=dt.datetime(2017,1,1), \
         sv = 1000000): 
-        # add your code to do learning here
         
-        btc = pd.read_csv("COINBASE_FILTERED.csv")
-        
+        print(os.listdir())
+        btc = pd.read_csv('COINBASE_FILTERED.CSV')
         size= int(len(btc)*0.005)
         
         btc = btc.iloc[-3*size:-size]
@@ -165,7 +165,7 @@ class StrategyLearner(object):
         ed=dt.datetime(2010,1,1), \
         sv = 10000):
         
-        btc = pd.read_csv("COINBASE_FILTERED.csv")
+        btc = pd.read_csv("COINBASE_FILTERED.CSV")
         
         size= int(len(btc)*0.005)
         btc = btc.iloc[-size:]

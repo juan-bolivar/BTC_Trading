@@ -1,5 +1,5 @@
 import random
-import gym
+#import gym        # Esto era de la libreria original
 import numpy as np
 from collections import deque
 from keras.models import Sequential

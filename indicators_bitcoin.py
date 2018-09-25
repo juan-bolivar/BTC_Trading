@@ -133,8 +133,13 @@ def indicators(allocs=[1],sv=1000000, rfr=0.0, sf=252.0,precios=0,gen_plot=False
     #prices_SPY = normalize_data(prices_SPY)
     port_val   = normalize_data(port_val)
 
-    moving_avarage    = normalized_values.rolling(14,min_periods=None,freq=None,center=False).mean()
-    rolling_std       = normalized_values.rolling(14,min_periods=None,freq=None,center=False).std()
+#    moving_avarage    = normalized_values.rolling(14,min_periods=None,freq=None,center=False).mean()
+
+#    rolling_std       = normalized_values.rolling(14,min_periods=None,freq=None,center=False).std()
+
+    moving_avarage    = normalized_values.rolling(14,min_periods=None,center=False).mean()
+    rolling_std       = normalized_values.rolling(14,min_periods=None,center=False).std()
+    
 
     rsi_val           = rsifunction(normalized_values)
     upp_std           = moving_avarage + 2*rolling_std

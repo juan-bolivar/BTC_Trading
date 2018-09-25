@@ -137,8 +137,13 @@ def indicators(sd = dt.datetime(2008,1,1), ed = dt.datetime(2009,12,31), \
     prices_SPY = normalize_data(prices_SPY)
     port_val   = normalize_data(port_val)
 
-    moving_avarage    = normalized_values.rolling(14,min_periods=None,freq=None,center=False).mean()
-    rolling_std       = normalized_values.rolling(14,min_periods=None,freq=None,center=False).std()
+#    moving_avarage    = normalized_values.rolling(14,min_periods=None,freq=None,center=False).mean()
+
+#    rolling_std       = normalized_values.rolling(14,min_periods=None,freq=None,center=False).std()
+
+    moving_avarage    = normalized_values.rolling(14,min_periods=None,center=False).mean()
+    rolling_std       = normalized_values.rolling(14,min_periods=None,center=False).std()
+    
 
     rsi_val           = rsifunction(normalized_values)
     upp_std           = moving_avarage + 2*rolling_std
