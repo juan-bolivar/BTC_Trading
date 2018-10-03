@@ -1,5 +1,7 @@
 """
+
 Template for implementing StrategyLearner  (c) 2016 Tucker Balch
+
 """
 
 import datetime as dt
@@ -59,7 +61,6 @@ class StrategyLearner(object):
         ed=dt.datetime(2017,1,1), \
         sv = 1000000): 
         
-        print(os.listdir())
         btc = pd.read_csv('COINBASE_FILTERED.CSV')
         size= int(len(btc)*0.005)
         
