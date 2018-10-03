@@ -45,7 +45,6 @@ def assess_portfolio(portfolio=None,sd = dt.datetime(2008,1,1), ed = dt.datetime
     allocs=[0.1,0.2,0.3,0.4], \
     sv=1000000, rfr=0.0, sf=252.0,precios=0, \
     gen_plot=False):
-
     # Read in adjusted closing prices for given symbols, date range
     dates = pd.date_range(sd, ed)
     if(type(portfolio)==type(None)):
@@ -58,7 +57,6 @@ def assess_portfolio(portfolio=None,sd = dt.datetime(2008,1,1), ed = dt.datetime
         prices = portfolio# pd.concat([portfolio,prices_all[syms]],axis=1)
         prices_SPY = prices_all[syms]
     # Get daily portfolio value
-
     
     
     
