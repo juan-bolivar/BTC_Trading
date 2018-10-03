@@ -170,7 +170,7 @@ def compute_portvals(orders_df , start_val = 1000000, commission=9.95, impact=0.
 
     pdb.set_trace()
     
-    df_prices = get_data('COINBASE_FILTERED.csv',start_date=start_date,end_date=end_date)
+    df_prices = get_data('COINBASE_FILTERED.CSV',start_date=start_date,end_date=end_date)
     #df_prices = df_prices[symbols]
     
     temp = pd.DataFrame(index=df_prices.index)
@@ -199,7 +199,6 @@ def compute_portvals(orders_df , start_val = 1000000, commission=9.95, impact=0.
     df_value['Value'] = df_value.sum(axis=1)
 
     df_portval = pd.DataFrame(index=range(len(df_value.index.get_values())))
-    #pdb.set_trace()
     df_portval['TotalValue']=0
     posicion = 0
     for key,value in df_value.iterrows():
@@ -212,6 +211,7 @@ def compute_portvals(orders_df , start_val = 1000000, commission=9.95, impact=0.
    
     df_portval = pd.DataFrame(data=df_portval.TotalValue.values,index=df_portval.Dates.values,columns=['TotalValue'])
     
+    pdb.set_trace()
     
     #pd.concat([df_value['Value'],df_holdings['Cash'],df_portval,orders_df['Order']],axis=1)
     return df_portval

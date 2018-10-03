@@ -91,10 +91,10 @@ class StrategyLearner(object):
                 
         self.prices       = normalized_values.copy()
 
-        state_size        = 6
+        state_size        = 6    # Tamanio del vector de estados
         action_size       = 5
         
-        max_iter          = 10
+        max_iter          = 10    # Iteraciones Maximas para el  aprendizaje
         actions_df        = pd.DataFrame(index=states.index,data=[0]*len(states))
         iter_num          = 0
         converged         = False
