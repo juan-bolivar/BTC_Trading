@@ -60,9 +60,10 @@ class StrategyLearner(object):
         sd=dt.datetime(2015,1,1), \
         ed=dt.datetime(2017,1,1), \
         sv = 1000000): 
-        
-        btc = pd.read_csv('COINBASE_FILTERED.CSV')
-        size= int(len(btc)*0.005)
+        btc  = pd.read_csv('COINDESK_LAST_MONTH.CSV')
+        #btc = pd.read_csv('COINBASE_FILTERED.CSV')   # CHANGE TO DATABASE
+        size = int(len(btc))
+        #size= int(len(btc)*0.005)
         
         btc = btc.iloc[-3*size:-size]
         
@@ -81,7 +82,8 @@ class StrategyLearner(object):
         
         btc['to_predict'] = btc['Delta'].apply(lambda x : 1 if(x>0) else 0)
         
-        btc.index = pd.to_datetime(btc['Timestamp'],infer_datetime_format =True,unit='s')
+        #btc.index = pd.to_datetime(btc['Timestamp'],infer_datetime_format =True,unit='s')
+        btc.index = pd.to_datetime(btc['Date'],infer_datetime_format =True,unit='s')
         
         (normalized_values ,bbp,moving_avarage,rsi_val,momentum,sma_cross) = indicators(data=btc)
         
@@ -100,11 +102,13 @@ class StrategyLearner(object):
         converged         = False
         
         dates = pd.date_range(sd,ed)
-        self.prices_all   = btc['Weighted_Price'] #ut.get_data([symbol], dates)[symbol] 
+        
+        #self.prices_all   = btc['Weighted_Price'] #ut.get_data([symbol], dates)[symbol]
+        self.prices_all   = btc['Close'] #ut.get_data([symbol], dates)[symbol] 
                 
         agent = DQNAgent(state_size, action_size)
         
-        batch_size = 2 #64/32
+        batch_size = 64  #64/32
         
         comienzo = time.time()
 
@@ -188,7 +192,8 @@ class StrategyLearner(object):
         
         btc.index = pd.to_datetime(btc['Timestamp'],infer_datetime_format =True,unit='s')
         
-        self.prices_all   = btc['Weighted_Price'] #ut.get_data([symbol], dates)[symbol]
+        #self.prices_all   = btc['Weighted_Price'] #ut.get_data([symbol], dates)[symbol]
+        self.prices_all   = btc['Close'] #ut.get_data([symbol], dates)[symbol]
         
         (normalized_values ,bbp,moving_avarage,rsi_val,momentum,sma_cross) = indicators(data=btc)
                 

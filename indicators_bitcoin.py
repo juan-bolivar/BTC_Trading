@@ -119,9 +119,13 @@ def indicators(allocs=[1],sv=1000000, rfr=0.0, sf=252.0,precios=0,gen_plot=False
     #dates = pd.date_range(sd, ed)
     #prices_all = get_data(syms, dates)  # automatically adds SPY
     #prices = prices_all[syms]  # only portfolio symbols
-    prices = data['Weighted_Price'].to_frame() #prices_all['SPY']  # only SPY, for comparison later
+    
+    #prices = data['Weighted_Price'].to_frame() #prices_all['SPY']  # only SPY, for comparison later
+    
+    prices = data['Close'].to_frame() #prices_all['SPY']  # only SPY, for comparison later
+    
     # Get daily portfolio value
-
+    
     
     normalized_values = normalize_data(prices)
     

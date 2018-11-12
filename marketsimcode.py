@@ -169,6 +169,9 @@ def compute_portvals(orders_df , start_val = 1000000, commission=9.95, impact=0.
     end_date   = df_trades['Date'].iloc[-1]
 
     pdb.set_trace()
+    btc  = pd.read_csv('COINDESK_LAST_MONTH.CSV')
+    #btc = pd.read_csv('COINBASE_FILTERED.CSV')   # CHANGE TO DATABASE
+        
     
     df_prices = get_data('COINBASE_FILTERED.CSV',start_date=start_date,end_date=end_date)
     #df_prices = df_prices[symbols]
