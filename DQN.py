@@ -8,7 +8,7 @@ from keras.optimizers import Adam
 from keras import backend as K
 import pdb
 
-EPISODES = 5000
+EPISODES = 10000
 
 
 class DQNAgent:
@@ -33,8 +33,8 @@ class DQNAgent:
     def _build_model(self):
         # Neural Net for Deep-Q learning Model
         model = Sequential()
-        model.add(Dense(24, input_dim=self.state_size, activation='relu'))
-        model.add(Dense(24, activation='relu'))
+        model.add(Dense(48, input_dim=self.state_size, activation='relu'))
+        model.add(Dense(48, activation='relu'))
         model.add(Dense(self.action_size, activation='linear'))
         model.compile(loss=self._huber_loss,
                       optimizer=Adam(lr=self.learning_rate))
@@ -79,7 +79,7 @@ if __name__ == "__main__":
     agent = DQNAgent(state_size, action_size)
     # agent.load("./save/cartpole-ddqn.h5")
     done = False
-    batch_size = 32
+    batch_size = 64
     for e in range(EPISODES):
         state = env.reset()
         state = np.reshape(state, [1, state_size])

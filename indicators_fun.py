@@ -21,7 +21,6 @@ def compound_returns(df):
 
 def normalize_data(df):
     df1 = df.copy()
-    
     return (df1/df1.iloc[0])
 
 

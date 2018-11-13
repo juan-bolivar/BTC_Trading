@@ -74,7 +74,7 @@ def compute_portvals(orders_df , start_val = 1000000, commission=9.95, impact=0.
    
     df_portval = pd.DataFrame(data=df_portval.TotalValue.values,index=df_portval.Dates.values,columns=['TotalValue'])
     
-    pdb.set_trace()
+    #pdb.set_trace()
     #pd.concat([df_value['Value'],df_holdings['Cash'],df_portval,orders_df['Order']],axis=1)
     return df_portval
 
@@ -84,7 +84,7 @@ def test_code():
 
     #of = "./orders/orders2.csv"
     #df_trades = pd.read_csv(of,sep=',')
-    pdb.set_trace()
+    #pdb.set_trace()
     of  = "./salida.csv"
     df_trades  = pd.read_csv(of)
 
@@ -147,7 +147,7 @@ def get_data(archive='COINBASE_FILTERED.csv',start_date=dt.datetime(2009,1,1) , 
     
     
 
-def compute_portvals(orders_df , start_val = 1000000, commission=9.95, impact=0.005):
+def compute_portvals(orders_df , start_val = 10000, commission=9.95, impact=0.005):
     
     df_trades2 = orders_df.copy()
     df_trades2.sort_values('Date',inplace=True)
@@ -168,18 +168,19 @@ def compute_portvals(orders_df , start_val = 1000000, commission=9.95, impact=0.
     start_date = df_trades.ix[0,'Date']
     end_date   = df_trades['Date'].iloc[-1]
 
-    pdb.set_trace()
     btc  = pd.read_csv('COINDESK_LAST_MONTH.CSV')
+    btc = btc.iloc[:-2]
     #btc = pd.read_csv('COINBASE_FILTERED.CSV')   # CHANGE TO DATABASE
-        
+    btc.index = pd.to_datetime(btc['Date'],infer_datetime_format =True)
+    df_prices = btc['Close']
     
-    df_prices = get_data('COINBASE_FILTERED.CSV',start_date=start_date,end_date=end_date)
+    pdb.set_trace()
+    
+    #get_data('COINBASE_FILTERED.CSV',start_date=start_date,end_date=end_date)
     #df_prices = df_prices[symbols]
     
     temp = pd.DataFrame(index=df_prices.index)
-    
     df_trades = temp.join(df_trades.set_index('Date'),sort='True').rename_axis(None,axis=0).fillna(0)
-    
     df_holdings = df_trades.copy()
     
     rv = pd.DataFrame(index=df_prices.index, data=df_prices.as_matrix(),columns=symbols)
@@ -225,7 +226,7 @@ def test_code():
 
     #of = "./orders/orders2.csv"
     #df_trades = pd.read_csv(of,sep=',')
-    pdb.set_trace()
+    #pdb.set_trace()
     of  = "./salida.csv"
     df_trades  = pd.read_csv(of)
 
