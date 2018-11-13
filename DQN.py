@@ -8,7 +8,7 @@ from keras.optimizers import Adam
 from keras import backend as K
 import pdb
 
-EPISODES = 5000
+EPISODES = 500
 
 
 class DQNAgent:
@@ -61,7 +61,7 @@ class DQNAgent:
             target = self.model.predict(state)
             t = self.target_model.predict(next_state)[0]
             target[0][action] = reward + self.gamma * np.amax(t)
-            self.model.fit(state, target, epochs=1, verbose=0)
+            self.model.fit(state, target, epochs=50, verbose=0)    # TRAINING NEURAL NETWORK , WITH REPLAY
         if self.epsilon > self.epsilon_min:
             self.epsilon *= self.epsilon_decay
 
@@ -79,11 +79,11 @@ if __name__ == "__main__":
     agent = DQNAgent(state_size, action_size)
     # agent.load("./save/cartpole-ddqn.h5")
     done = False
-    batch_size = 32
+    batch_size = 64
     for e in range(EPISODES):
         state = env.reset()
         state = np.reshape(state, [1, state_size])
-        for time in range(500):
+        for time in range(300):
             # env.render()
             action = agent.act(state)
             next_state, reward, done, _ = env.step(action)

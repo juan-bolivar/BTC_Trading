@@ -20,8 +20,8 @@ def compound_returns(df):
     return(df1)
 
 def normalize_data(df):
+    #pdb.set_trace()
     df1 = df.copy()
-    
     return (df1/df1.iloc[0])
 
 
@@ -31,7 +31,6 @@ def momentumfun(prices,n=14):
     salida = (prices.shift(-1)/prices)-1
     salida.iloc[:n,:]=np.nan
     return salida
-
 
 
 def rsifunction(prices,n=14):
@@ -121,6 +120,8 @@ def indicators(allocs=[1],sv=1000000, rfr=0.0, sf=252.0,precios=0,gen_plot=False
     #prices = prices_all[syms]  # only portfolio symbols
     
     #prices = data['Weighted_Price'].to_frame() #prices_all['SPY']  # only SPY, for comparison later
+
+    #pdb.set_trace()
     
     prices = data['Close'].to_frame() #prices_all['SPY']  # only SPY, for comparison later
     
@@ -128,7 +129,6 @@ def indicators(allocs=[1],sv=1000000, rfr=0.0, sf=252.0,precios=0,gen_plot=False
     
     
     normalized_values = normalize_data(prices)
-    
     alloced_values    = normalized_values*allocs
     pos_val           = alloced_values*sv
     port_val          = pos_val.sum(axis=1) # add code here to compute daily portfolio values

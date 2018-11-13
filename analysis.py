@@ -61,7 +61,7 @@ def assess_portfolio(portfolio=None,sd = dt.datetime(2008,1,1), ed = dt.datetime
     
     
     if( (isinstance(precios,pd.core.series.Series))):
-        pdb.set_trace()
+        #pdb.set_trace()
         precios = precios.to_frame()
         normalized_values = normalize_data(precios)
         
