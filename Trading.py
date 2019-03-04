@@ -1,8 +1,4 @@
-"""
 
-Template for implementing StrategyLearner  (c) 2016 Tucker Balch
-
-"""
 
 import datetime as dt
 import pandas as pd
